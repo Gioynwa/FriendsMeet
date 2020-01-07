@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "931211146138",
+    "firebase_url": "https://friendsmeet-53297.firebaseio.com",
+    "project_id": "friendsmeet-53297",
+    "storage_bucket": "friendsmeet-53297.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931211146138:android:f45c9fd60a7d7d95a70023",
+        "android_client_info": {
+          "package_name": "com.example.friendsmeet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931211146138-nh4liqfvgl8rkfm8ghrnnh9hgkrn0eck.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.friendsmeet",
+            "certificate_hash": "9aa1fe7df19490949e3c63393ffb6c26064a7cf0"
+          }
+        },
+        {
+          "client_id": "931211146138-1ndtjuj2km6akh12unbhapvtl50eosu4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH_pXB_-XjyHFT_NrTQD1RNVD7xKuV3NA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931211146138-1ndtjuj2km6akh12unbhapvtl50eosu4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
