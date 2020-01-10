@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "931211146138-uemrstb47dvtri21m9s2q88bhmju9l3b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.friendsmeet",
+            "certificate_hash": "e2d1111490b10bf7c0e802fd2a2569c6b3fc59f1"
+          }
+        },
+        {
           "client_id": "931211146138-nh4liqfvgl8rkfm8ghrnnh9hgkrn0eck.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

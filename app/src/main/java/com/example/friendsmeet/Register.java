@@ -17,9 +17,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Register extends AppCompatActivity {
+
+    public static final String USER_NAME = "com.example.friendsmeet.name";
+    public static final String USER_ID = "com.example.friendsmeet.id";
 
     public static final String TAG = "TAG";
     EditText userFullName, userEmail, userPassword, userPhone;
@@ -27,6 +32,7 @@ public class Register extends AppCompatActivity {
     TextView userLoginButton;
     FirebaseAuth fAuth;
     ProgressBar bar;
+    DatabaseReference databaseUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +81,10 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
+
+                            databaseUsers = FirebaseDatabase.getInstance().getReference("users");
+                            addUser();
+
                             Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }
@@ -96,4 +106,29 @@ public class Register extends AppCompatActivity {
         });
 
     }
+
+    private void addUser() {
+
+        String name = userFullName.getText().toString().trim();
+        String email = userEmail.getText().toString();
+        String password = userPassword.getText().toString();
+        String phone = userPhone.getText().toString();
+
+        if(!TextUtils.isEmpty(name)) {
+
+            String id = databaseUsers.push().getKey();
+            User user = new User(id, name, email, password, phone);
+
+            databaseUsers.child(id).setValue(user);
+
+            Toast.makeText(this, "User added in database", Toast.LENGTH_LONG).show();
+
+        } else {
+            //if the value is not given displaying a toast
+            Toast.makeText(this, "Please enter a name", Toast.LENGTH_LONG).show();
+        }
+
+
+    }
+
 }
