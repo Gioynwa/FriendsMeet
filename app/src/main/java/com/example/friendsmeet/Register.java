@@ -109,7 +109,7 @@ public class Register extends AppCompatActivity {
 
     private void addUser() {
 
-        String name = userFullName.getText().toString().trim();
+        String name = userFullName.getText().toString();
         String email = userEmail.getText().toString();
         String password = userPassword.getText().toString();
         String phone = userPhone.getText().toString();

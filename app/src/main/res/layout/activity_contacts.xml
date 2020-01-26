@@ -7,41 +7,6 @@
     android:background="@drawable/register"
     tools:context=".Contacts">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="260dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="64dp"
-        android:fontFamily="@font/arbutus"
-        android:text="FriendsMeet"
-        android:textColor="#FC6F12"
-        android:textSize="32sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.011"
-        tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/textViewCon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:fontFamily="@font/arbutus"
-        android:text="Contacts"
-        android:textColor="#FC6F12"
-        android:textSize="16sp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.117"
-        tools:visibility="visible" />
 
     <Button
         android:id="@+id/backButton"
@@ -61,4 +26,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.989" />
+
+    <ListView
+        android:id="@+id/contactListID"
+        android:dividerHeight="2dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.643" />
 </androidx.constraintlayout.widget.ConstraintLayout>
