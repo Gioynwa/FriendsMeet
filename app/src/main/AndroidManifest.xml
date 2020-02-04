@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Newmeeting"></activity>
+        <activity android:name=".AddMembers"></activity>
+        <activity android:name=".Newmeeting" />
         <activity android:name=".Mymeetings" />
         <activity android:name=".Contacts" />
         <activity android:name=".Login" />

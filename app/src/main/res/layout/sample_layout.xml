@@ -11,7 +11,7 @@
         android:id="@+id/nameTextViewId"
         android:fontFamily="@font/arbutus"
         android:text="FriendsMeet"
-        android:textColor="#090404"
+        android:textColor="#FFFFFF"
         android:layout_marginTop="5dp" />
 
     <TextView
@@ -21,7 +21,7 @@
         android:id="@+id/emailTextViewId"
         android:fontFamily="@font/arbutus"
         android:text="FriendsMeet"
-        android:textColor="#090404"
+        android:textColor="#FFFFFF"
         android:layout_marginTop="5dp" />
 
     <TextView
@@ -31,7 +31,7 @@
         android:id="@+id/phoneTextViewId"
         android:fontFamily="@font/arbutus"
         android:text="FriendsMeet"
-        android:textColor="#090404"
+        android:textColor="#FFFFFF"
         android:layout_marginTop="5dp" />
 
 
