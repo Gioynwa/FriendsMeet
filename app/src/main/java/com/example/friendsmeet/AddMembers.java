@@ -26,32 +26,34 @@ import java.util.List;
 public class AddMembers extends AppCompatActivity {
 
     ArrayList<String> selectedItems = new ArrayList<>();
+    ArrayList<String> databaseItems = new ArrayList<>();
     Button back;
-    //DatabaseReference databaseUsers;
+    DatabaseReference databaseUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_members);
+
         back = findViewById(R.id.backButton);
-        //databaseUsers = FirebaseDatabase.getInstance().getReference("users");
+        databaseUsers = FirebaseDatabase.getInstance().getReference("users");
 
-        ListView ch1 = findViewById(R.id.checkable_list);
-        ch1.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
-        String[] items = {"English", "French", "Chinese", "Greek"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.rowlayout, R.id.txt_mem, items);
-        ch1.setAdapter(adapter);
-        ch1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        databaseUsers.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem = ((TextView)view).getText().toString();
-                if(selectedItems.contains(selectedItem)) {
-                    selectedItems.remove(selectedItem);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                databaseItems.clear();
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    User user = dataSnapshot1.getValue(User.class);
+                    databaseItems.add(user.getEmail());
                 }
-                else {
-                    selectedItems.add(selectedItem);
-                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
@@ -71,4 +73,38 @@ public class AddMembers extends AppCompatActivity {
         }
         Toast.makeText(this, "You have selected \n"+items, Toast.LENGTH_LONG).show();
     }
+
+    public void showDatabaseItems(View view) {
+
+        String items[] = new String[databaseItems.size()];
+
+        ListView ch1 = findViewById(R.id.checkable_list);
+        ch1.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+        // ArrayList to Array Conversion
+        for (int j = 0; j < databaseItems.size(); j++) {
+
+            // Assign each value to String array
+            items[j] = databaseItems.get(j);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.rowlayout, R.id.txt_mem, items);
+        ch1.setAdapter(adapter);
+
+        ch1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = ((TextView)view).getText().toString();
+                if(selectedItems.contains(selectedItem)) {
+                    selectedItems.remove(selectedItem);
+                }
+                else {
+                    selectedItems.add(selectedItem);
+                }
+            }
+        });
+
+    }
+
+
 }

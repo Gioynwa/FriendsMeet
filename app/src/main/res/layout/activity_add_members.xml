@@ -46,4 +46,20 @@
 
     </Button>
 
+    <Button
+        android:id="@+id/btdtb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#090404"
+        android:text="Show Users"
+        android:fontFamily="@font/arbutus"
+        android:onClick="showDatabaseItems"
+        android:textColor="#FC6F12"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp">
+
+    </Button>
+
 </LinearLayout>
