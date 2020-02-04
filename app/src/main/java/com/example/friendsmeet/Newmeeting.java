@@ -10,7 +10,8 @@ import android.widget.Button;
 public class Newmeeting extends AppCompatActivity {
 
     Button back;
-    Button createNewMeeting;
+    Button chooseLocation;
+    Button addMember;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +19,8 @@ public class Newmeeting extends AppCompatActivity {
         setContentView(R.layout.activity_newmeeting);
 
         back = findViewById(R.id.backButton);
-        createNewMeeting = findViewById(R.id.createNewMeetingButton);
+        chooseLocation = findViewById(R.id.chooseLocationButton);
+        addMember = findViewById(R.id.addMemberButton);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,7 +30,15 @@ public class Newmeeting extends AppCompatActivity {
             }
         });
 
-        createNewMeeting.setOnClickListener(new View.OnClickListener() {
+        chooseLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+            }
+        });
+
+        addMember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));

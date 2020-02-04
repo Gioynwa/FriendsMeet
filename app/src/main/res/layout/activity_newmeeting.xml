@@ -63,22 +63,40 @@
         app:layout_constraintVertical_bias="0.989" />
 
     <Button
-        android:id="@+id/createNewMeetingButton"
+        android:id="@+id/chooseLocationButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="130dp"
         android:layout_marginEnd="130dp"
         android:background="#090404"
         android:fontFamily="@font/arbutus"
-        android:text="Create New Meeting"
+        android:text="Choose Meeting Location"
         android:textColor="#FC6F12"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
+        app:layout_constraintVertical_bias="0.648" />
+
+    <Button
+        android:id="@+id/addMemberButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="130dp"
+        android:layout_marginEnd="130dp"
+        android:background="#090404"
+        android:fontFamily="@font/arbutus"
+        android:text="Add Meeting Members"
+        android:textColor="#FC6F12"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

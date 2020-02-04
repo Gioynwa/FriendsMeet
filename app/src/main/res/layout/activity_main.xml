@@ -65,7 +65,7 @@
         android:layout_marginEnd="30dp"
         android:background="#FC6F12"
         android:fontFamily="@font/arbutus"
-        android:text="CONTACTS"
+        android:text="APP USERS"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
