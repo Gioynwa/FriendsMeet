@@ -2,6 +2,7 @@ package com.example.friendsmeet;
 
 public class Meeting {
 
+    private String id;
     private String name;
     private String[] members;
     private double longitude;
@@ -11,11 +12,16 @@ public class Meeting {
 
     }
 
-    public Meeting(String name, String[] members, double longitude, double latitude) {
+    public Meeting(String id, String name, String[] members, double longitude, double latitude) {
+        this.id = id;
         this.name = name;
         this.members = members;
         this.longitude = longitude;
         this.latitude = latitude;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -32,6 +38,10 @@ public class Meeting {
 
     public double getLatitude() {
         return latitude;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setName(String name) {
