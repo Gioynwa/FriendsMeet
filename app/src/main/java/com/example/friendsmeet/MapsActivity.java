@@ -1,5 +1,6 @@
 package com.example.friendsmeet;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
@@ -11,6 +12,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,6 +20,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,6 +34,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     LocationManager locationManager;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +68,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     LatLng latLng = new LatLng(latitude, longtitude);
                     //instantiate the class, Geocoder
                     Geocoder geocoder = new Geocoder(getApplicationContext());
+
+                    firebaseAuth = FirebaseAuth.getInstance();
+                    firebaseUser = firebaseAuth.getCurrentUser();
+                    DatabaseReference databaseLocation = FirebaseDatabase.getInstance().getReference("Location");
+                    String id = databaseLocation.push().getKey();
+
+                    LocationHelper helper = new LocationHelper(id,
+                            location.getLongitude(),
+                            location.getLatitude(),
+                            firebaseUser.getEmail()
+                    );
+
+                    databaseLocation.child(id).setValue(helper);
+
+//                    LocationHelper helper = new LocationHelper(
+//                            location.getLongitude(),
+//                            location.getLatitude(),
+//                            firebaseUser.getEmail()
+//                    );
+//
+//                    FirebaseDatabase.getInstance().getReference("Location").setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            if(task.isSuccessful()) {
+//                                Toast.makeText(MapsActivity.this, "Location Saved", Toast.LENGTH_SHORT);
+//                            }
+//                            else {
+//                                Toast.makeText(MapsActivity.this, "Location Not Saved", Toast.LENGTH_SHORT);
+//                            }
+//                        }
+//                    });
+
                     try {
                         List<Address> addressList = geocoder.getFromLocation(latitude, longtitude, 1);
                         String str = addressList.get(0).getLocality();
@@ -96,6 +138,33 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     LatLng latLng = new LatLng(latitude, longtitude);
                     //instantiate the class, Geocoder
                     Geocoder geocoder = new Geocoder(getApplicationContext());
+
+                    firebaseAuth = FirebaseAuth.getInstance();
+                    firebaseUser = firebaseAuth.getCurrentUser();
+
+                    DatabaseReference databaseLocation = FirebaseDatabase.getInstance().getReference("Location");
+                    String id = databaseLocation.push().getKey();
+
+                    LocationHelper helper = new LocationHelper(id,
+                            location.getLongitude(),
+                            location.getLatitude(),
+                            firebaseUser.getEmail()
+                    );
+
+                    databaseLocation.child(id).setValue(helper);
+
+//                    FirebaseDatabase.getInstance().getReference("Location").setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            if(task.isSuccessful()) {
+//                                Toast.makeText(MapsActivity.this, "Location Saved", Toast.LENGTH_SHORT);
+//                            }
+//                            else {
+//                                Toast.makeText(MapsActivity.this, "Location Not Saved", Toast.LENGTH_SHORT);
+//                            }
+//                        }
+//                    });
+
                     try {
                         List<Address> addressList = geocoder.getFromLocation(latitude, longtitude, 1);
                         String str = addressList.get(0).getLocality() + ",";
