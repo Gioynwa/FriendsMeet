@@ -4,7 +4,7 @@ public class Meeting {
 
     private String id;
     private String name;
-    private String[] members;
+    private String members;
     private double longitude;
     private double latitude;
 
@@ -12,7 +12,7 @@ public class Meeting {
 
     }
 
-    public Meeting(String id, String name, String[] members, double longitude, double latitude) {
+    public Meeting(String id, String name, String members, double longitude, double latitude) {
         this.id = id;
         this.name = name;
         this.members = members;
@@ -28,7 +28,7 @@ public class Meeting {
         return name;
     }
 
-    public String[] getMembers() {
+    public String getMembers() {
         return members;
     }
 
@@ -48,7 +48,7 @@ public class Meeting {
         this.name = name;
     }
 
-    public void setMembers(String[] members) {
+    public void setMembers(String members) {
         this.members = members;
     }
 

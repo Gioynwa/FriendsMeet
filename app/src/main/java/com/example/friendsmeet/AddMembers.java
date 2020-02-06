@@ -72,6 +72,15 @@ public class AddMembers extends AppCompatActivity {
             items += "-"+item+"\n";
         }
         Toast.makeText(this, "You have selected \n"+items, Toast.LENGTH_LONG).show();
+
+        //###############################pass the string array in Newmeeting activity######################################
+
+
+        String value = items;
+
+        Intent i = new Intent(AddMembers.this, Newmeeting.class);
+        i.putExtra("key", value);
+        startActivity(i);
     }
 
     public void showDatabaseItems(View view) {
