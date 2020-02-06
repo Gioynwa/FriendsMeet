@@ -18,7 +18,7 @@ public class Newmeeting extends AppCompatActivity {
     Button back;
     Button chooseLocation;
     Button addMember;
-    Button getID;
+    Button verifyMembers;
     Button typeName;
     EditText meetingName;
 
@@ -32,10 +32,18 @@ public class Newmeeting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newmeeting);
 
+//        Bundle extras = getIntent().getExtras();
+//        String value = "hi";
+//        if (extras != null) {
+//
+//            value = extras.getString("key");
+//            members = value;
+//        }
+
         back = findViewById(R.id.backButton);
         chooseLocation = findViewById(R.id.chooseLocationButton);
         addMember = findViewById(R.id.addMemberButton);
-        getID = findViewById(R.id.getMeetingId);
+        verifyMembers = findViewById(R.id.verifyMembers);
         typeName = findViewById(R.id.insertMeetingName);
         meetingName = findViewById(R.id.MeetingName);
 
@@ -63,11 +71,16 @@ public class Newmeeting extends AppCompatActivity {
             }
         });
 
-        getID.setOnClickListener(new View.OnClickListener() {
+        verifyMembers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AddMembers.class));
-                finish();
+                Bundle extras = getIntent().getExtras();
+                String value = "hi";
+                if (extras != null) {
+
+                    value = extras.getString("key");
+                    members = value;
+                }
             }
         });
 
@@ -92,18 +105,11 @@ public class Newmeeting extends AppCompatActivity {
     public void meetingDatabase(View view) {
 
         //################################retreive string array members from AddMember activity###########################
-        Bundle extras = getIntent().getExtras();
-        String value = "hi";
-        if (extras != null) {
-
-            value = extras.getString("key");
-            members = value;
-        }
 
         Bundle extrasLocation = getIntent().getExtras();
         if (extrasLocation != null) {
             int number;
-            number = extras.getInt("LocationKey");
+            number = extrasLocation.getInt("LocationKey");
 
             //Volos Paralia
             if(number == 1) {
