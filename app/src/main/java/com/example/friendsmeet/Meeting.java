@@ -7,17 +7,19 @@ public class Meeting {
     private String members;
     private double longitude;
     private double latitude;
+    private String dest;
 
     public Meeting() {
 
     }
 
-    public Meeting(String id, String name, String members, double longitude, double latitude) {
+    public Meeting(String id, String name, String members, double longitude, double latitude, String dest) {
         this.id = id;
         this.name = name;
         this.members = members;
         this.longitude = longitude;
         this.latitude = latitude;
+        this.dest = dest;
     }
 
     public String getId() {
@@ -34,6 +36,10 @@ public class Meeting {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    public String getDest() {
+        return dest;
     }
 
     public double getLatitude() {
@@ -58,5 +64,9 @@ public class Meeting {
 
     public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public void setDest(String dest) {
+        this.dest = dest;
     }
 }

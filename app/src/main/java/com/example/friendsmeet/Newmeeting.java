@@ -26,6 +26,7 @@ public class Newmeeting extends AppCompatActivity {
     static double latitudeGlobal = 0;
     static double longitudeGlobal = 0;
     static String members = "men";
+    static String destination = "Nowhere";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +117,7 @@ public class Newmeeting extends AppCompatActivity {
 
                 latitudeGlobal = 39.36103;
                 longitudeGlobal = 22.94248;
+                destination = "Volos Paralia";
             }
 
             //Athens Syntagma
@@ -123,6 +125,7 @@ public class Newmeeting extends AppCompatActivity {
 
                 latitudeGlobal = 37.971996112;
                 longitudeGlobal = 23.73416373;
+                destination = "Athens Syntagma";
             }
 
             //Thessaloniki Pyrgos
@@ -130,13 +133,14 @@ public class Newmeeting extends AppCompatActivity {
 
                 latitudeGlobal = 40.626527;
                 longitudeGlobal = 22.948545;
+                destination = "Thessaloniki Pyrgos";
             }
         }
 
         DatabaseReference databaseMeetings;
         databaseMeetings = FirebaseDatabase.getInstance().getReference("Meetings");
         String id = databaseMeetings.push().getKey();
-        Meeting meeting = new Meeting(id, globalName, members, longitudeGlobal, latitudeGlobal);
+        Meeting meeting = new Meeting(id, globalName, members, longitudeGlobal, latitudeGlobal, destination);
         databaseMeetings.child(id).setValue(meeting);
 
         Toast.makeText(this, "Meeting added in database", Toast.LENGTH_LONG).show();

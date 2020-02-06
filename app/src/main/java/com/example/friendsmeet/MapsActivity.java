@@ -27,8 +27,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.List;
@@ -55,7 +58,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 finish();
             }
         });
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -86,10 +88,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     //instantiate the class, Geocoder
                     Geocoder geocoder = new Geocoder(getApplicationContext());
 
+                    firebaseAuth = FirebaseAuth.getInstance();
+                    firebaseUser = firebaseAuth.getCurrentUser();
 
-                    //############################add new location into the database##############################
-//                    firebaseAuth = FirebaseAuth.getInstance();
-//                    firebaseUser = firebaseAuth.getCurrentUser();
+                    DatabaseReference databaseLocation = FirebaseDatabase.getInstance().getReference("Location");
+                    String id = databaseLocation.push().getKey();
+
+                    LocationHelper helper = new LocationHelper(id,
+                            location.getLongitude(),
+                            location.getLatitude(),
+                            firebaseUser.getEmail()
+                    );
+
+                    databaseLocation.child(id).setValue(helper);
 //                    DatabaseReference databaseLocation = FirebaseDatabase.getInstance().getReference("Location");
 //                    String id = databaseLocation.push().getKey();
 //
