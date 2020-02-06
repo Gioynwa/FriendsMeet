@@ -62,6 +62,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
+
+                    //######################################show my location and put a marker in the map###############################
                     double latitude = location.getLatitude();
                     double longtitude = location.getLongitude();
                     //instantiate the class, LatLng
@@ -69,18 +71,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     //instantiate the class, Geocoder
                     Geocoder geocoder = new Geocoder(getApplicationContext());
 
-                    firebaseAuth = FirebaseAuth.getInstance();
-                    firebaseUser = firebaseAuth.getCurrentUser();
-                    DatabaseReference databaseLocation = FirebaseDatabase.getInstance().getReference("Location");
-                    String id = databaseLocation.push().getKey();
 
-                    LocationHelper helper = new LocationHelper(id,
-                            location.getLongitude(),
-                            location.getLatitude(),
-                            firebaseUser.getEmail()
-                    );
+                    //############################add new location into the database##############################
+//                    firebaseAuth = FirebaseAuth.getInstance();
+//                    firebaseUser = firebaseAuth.getCurrentUser();
+//                    DatabaseReference databaseLocation = FirebaseDatabase.getInstance().getReference("Location");
+//                    String id = databaseLocation.push().getKey();
+//
+//                    LocationHelper helper = new LocationHelper(id,
+//                            location.getLongitude(),
+//                            location.getLatitude(),
+//                            firebaseUser.getEmail()
+//                    );
+//
+//                    databaseLocation.child(id).setValue(helper);
 
-                    databaseLocation.child(id).setValue(helper);
+                    //##########################update Location into the database#################################
 
 //                    LocationHelper helper = new LocationHelper(
 //                            location.getLongitude(),

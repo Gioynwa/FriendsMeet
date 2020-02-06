@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     Button myMeetingsButton;
     Button newMeetingButton;
     Button contactsButton;
+    Button mylocation;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         myMeetingsButton = findViewById(R.id.myMeetingsBtn);
         newMeetingButton = findViewById(R.id.newMeetingBtn);
         contactsButton = findViewById(R.id.contactsBtn);
+        mylocation = findViewById(R.id.showMyLocation);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -67,6 +69,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(getApplicationContext(), Contacts.class));
+                finish();
+            }
+        });
+
+        mylocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), MapsActivity.class));
                 finish();
             }
         });
