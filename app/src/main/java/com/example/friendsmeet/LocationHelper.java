@@ -2,20 +2,20 @@ package com.example.friendsmeet;
 
 public class LocationHelper {
 
+    private String ID;
     private double Longitude;
     private double Latitude;
     private String Email;
-    private String ID;
 
     public LocationHelper() {
 
     }
 
     public LocationHelper(String id, double longitude, double latitude, String email) {
-        ID = id;
-        Longitude = longitude;
-        Latitude = latitude;
-        Email = email;
+        this.ID = id;
+        this.Longitude = longitude;
+        this.Latitude = latitude;
+        this.Email = email;
     }
 
     public String getID() {

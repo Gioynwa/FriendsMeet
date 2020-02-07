@@ -23,7 +23,7 @@ import java.util.List;
 public class Mymeetings extends AppCompatActivity {
 
     DatabaseReference databaseReference;
-    Button back;
+    Button back, show;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     private List<Meeting> meetingList;
@@ -38,6 +38,7 @@ public class Mymeetings extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Meetings");
 
         back = findViewById(R.id.backButton);
+        show = findViewById(R.id.showLoc);
 
         meetingList = new ArrayList();
 
@@ -49,6 +50,14 @@ public class Mymeetings extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
+            }
+        });
+
+        show.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getApplicationContext(), MarkersActivity.class));
                 finish();
             }
         });

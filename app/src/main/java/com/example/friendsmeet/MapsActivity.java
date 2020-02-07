@@ -44,7 +44,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     FirebaseUser firebaseUser;
     Button mapBack;
     double latitude;
-    double longtitude;
+    double longitude;
+
     DatabaseReference databaseLocation;
 
     @Override
@@ -85,9 +86,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     //######################################show my location and put a marker in the map###############################
                     latitude = location.getLatitude();
-                    longtitude = location.getLongitude();
+                    longitude = location.getLongitude();
                     //instantiate the class, LatLng
-                    LatLng latLng = new LatLng(latitude, longtitude);
+                    LatLng latLng = new LatLng(latitude, longitude);
                     //instantiate the class, Geocoder
                     Geocoder geocoder = new Geocoder(getApplicationContext());
 
@@ -102,7 +103,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                 LocationHelper loc = dataSnapshot1.getValue(LocationHelper.class);
                                 if(loc.getEmail().equals(firebaseUser.getEmail())) {
-                                    databaseLocation.child(loc.getID()).child("longitude").setValue(longtitude);
+                                    databaseLocation.child(loc.getID()).child("longitude").setValue(longitude);
                                     databaseLocation.child(loc.getID()).child("latitude").setValue(latitude);
                                 }
                             }
@@ -117,7 +118,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
                     try {
-                        List<Address> addressList = geocoder.getFromLocation(latitude, longtitude, 1);
+                        List<Address> addressList = geocoder.getFromLocation(latitude, longitude, 1);
                         String str = addressList.get(0).getLocality();
                         str += addressList.get(0).getCountryName();
                         mMap.addMarker(new MarkerOptions().position(latLng).title(str));
@@ -149,9 +150,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public void onLocationChanged(Location location) {
                     latitude = location.getLatitude();
-                    longtitude = location.getLongitude();
+                    longitude = location.getLongitude();
                     //instantiate the class, LatLng
-                    LatLng latLng = new LatLng(latitude, longtitude);
+                    LatLng latLng = new LatLng(latitude, longitude);
                     //instantiate the class, Geocoder
                     Geocoder geocoder = new Geocoder(getApplicationContext());
 
@@ -166,7 +167,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                 LocationHelper loc = dataSnapshot1.getValue(LocationHelper.class);
                                 if(loc.getEmail().equals(firebaseUser.getEmail())) {
-                                    databaseLocation.child(loc.getID()).child("longitude").setValue(longtitude);
+                                    databaseLocation.child(loc.getID()).child("longitude").setValue(longitude);
                                     databaseLocation.child(loc.getID()).child("latitude").setValue(latitude);
                                 }
                             }
@@ -180,7 +181,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     });
 
                     try {
-                        List<Address> addressList = geocoder.getFromLocation(latitude, longtitude, 1);
+                        List<Address> addressList = geocoder.getFromLocation(latitude, longitude, 1);
                         String str = addressList.get(0).getLocality() + ",";
                         str += addressList.get(0).getCountryName();
                         mMap.addMarker(new MarkerOptions().position(latLng).title(str));
