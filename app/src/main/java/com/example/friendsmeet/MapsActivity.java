@@ -43,6 +43,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     Button mapBack;
+    double latitude;
+    double longtitude;
+    DatabaseReference databaseLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +84,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 public void onLocationChanged(Location location) {
 
                     //######################################show my location and put a marker in the map###############################
-                    double latitude = location.getLatitude();
-                    double longtitude = location.getLongitude();
+                    latitude = location.getLatitude();
+                    longtitude = location.getLongitude();
                     //instantiate the class, LatLng
                     LatLng latLng = new LatLng(latitude, longtitude);
                     //instantiate the class, Geocoder
@@ -91,46 +94,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     firebaseAuth = FirebaseAuth.getInstance();
                     firebaseUser = firebaseAuth.getCurrentUser();
 
-                    DatabaseReference databaseLocation = FirebaseDatabase.getInstance().getReference("Location");
-                    String id = databaseLocation.push().getKey();
+                    databaseLocation = FirebaseDatabase.getInstance().getReference("location");
+                    databaseLocation.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    LocationHelper helper = new LocationHelper(id,
-                            location.getLongitude(),
-                            location.getLatitude(),
-                            firebaseUser.getEmail()
-                    );
+                            for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                LocationHelper loc = dataSnapshot1.getValue(LocationHelper.class);
+                                if(loc.getEmail().equals(firebaseUser.getEmail())) {
+                                    databaseLocation.child(loc.getID()).child("longitude").setValue(longtitude);
+                                    databaseLocation.child(loc.getID()).child("latitude").setValue(latitude);
+                                }
+                            }
 
-                    databaseLocation.child(id).setValue(helper);
-//                    DatabaseReference databaseLocation = FirebaseDatabase.getInstance().getReference("Location");
-//                    String id = databaseLocation.push().getKey();
-//
-//                    LocationHelper helper = new LocationHelper(id,
-//                            location.getLongitude(),
-//                            location.getLatitude(),
-//                            firebaseUser.getEmail()
-//                    );
-//
-//                    databaseLocation.child(id).setValue(helper);
+                        }
 
-                    //##########################update Location into the database#################################
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-//                    LocationHelper helper = new LocationHelper(
-//                            location.getLongitude(),
-//                            location.getLatitude(),
-//                            firebaseUser.getEmail()
-//                    );
-//
-//                    FirebaseDatabase.getInstance().getReference("Location").setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if(task.isSuccessful()) {
-//                                Toast.makeText(MapsActivity.this, "Location Saved", Toast.LENGTH_SHORT);
-//                            }
-//                            else {
-//                                Toast.makeText(MapsActivity.this, "Location Not Saved", Toast.LENGTH_SHORT);
-//                            }
-//                        }
-//                    });
+                        }
+                    });
+
 
                     try {
                         List<Address> addressList = geocoder.getFromLocation(latitude, longtitude, 1);
@@ -164,8 +148,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
                 @Override
                 public void onLocationChanged(Location location) {
-                    double latitude = location.getLatitude();
-                    double longtitude = location.getLongitude();
+                    latitude = location.getLatitude();
+                    longtitude = location.getLongitude();
                     //instantiate the class, LatLng
                     LatLng latLng = new LatLng(latitude, longtitude);
                     //instantiate the class, Geocoder
@@ -174,28 +158,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     firebaseAuth = FirebaseAuth.getInstance();
                     firebaseUser = firebaseAuth.getCurrentUser();
 
-                    DatabaseReference databaseLocation = FirebaseDatabase.getInstance().getReference("Location");
-                    String id = databaseLocation.push().getKey();
+                    databaseLocation = FirebaseDatabase.getInstance().getReference("location");
+                    databaseLocation.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                    LocationHelper helper = new LocationHelper(id,
-                            location.getLongitude(),
-                            location.getLatitude(),
-                            firebaseUser.getEmail()
-                    );
+                            for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                LocationHelper loc = dataSnapshot1.getValue(LocationHelper.class);
+                                if(loc.getEmail().equals(firebaseUser.getEmail())) {
+                                    databaseLocation.child(loc.getID()).child("longitude").setValue(longtitude);
+                                    databaseLocation.child(loc.getID()).child("latitude").setValue(latitude);
+                                }
+                            }
 
-                    databaseLocation.child(id).setValue(helper);
+                        }
 
-//                    FirebaseDatabase.getInstance().getReference("Location").setValue(helper).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if(task.isSuccessful()) {
-//                                Toast.makeText(MapsActivity.this, "Location Saved", Toast.LENGTH_SHORT);
-//                            }
-//                            else {
-//                                Toast.makeText(MapsActivity.this, "Location Not Saved", Toast.LENGTH_SHORT);
-//                            }
-//                        }
-//                    });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
 
                     try {
                         List<Address> addressList = geocoder.getFromLocation(latitude, longtitude, 1);
@@ -227,7 +209,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             });
         }
     }
-
 
     /**
      * Manipulates the map once available.

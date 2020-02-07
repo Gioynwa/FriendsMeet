@@ -33,6 +33,7 @@ public class Register extends AppCompatActivity {
     FirebaseAuth fAuth;
     ProgressBar bar;
     DatabaseReference databaseUsers;
+    DatabaseReference databaseLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +84,16 @@ public class Register extends AppCompatActivity {
                         if(task.isSuccessful()) {
 
                             databaseUsers = FirebaseDatabase.getInstance().getReference("users");
+                            databaseLocation = FirebaseDatabase.getInstance().getReference("location");
+                            String id = databaseLocation.push().getKey();
+
+                            LocationHelper helper = new LocationHelper(id,
+                                    0,
+                                    0,
+                                    email
+                            );
+
+                            databaseLocation.child(id).setValue(helper);
                             addUser();
 
                             Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();

@@ -7,6 +7,10 @@ public class LocationHelper {
     private String Email;
     private String ID;
 
+    public LocationHelper() {
+
+    }
+
     public LocationHelper(String id, double longitude, double latitude, String email) {
         ID = id;
         Longitude = longitude;
