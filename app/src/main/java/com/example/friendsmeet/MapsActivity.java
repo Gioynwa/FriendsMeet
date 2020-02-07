@@ -89,7 +89,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     longitude = location.getLongitude();
                     //instantiate the class, LatLng
                     LatLng latLng = new LatLng(latitude, longitude);
-                    //instantiate the class, Geocoder
+                    //instantiate the class Geocoder
                     Geocoder geocoder = new Geocoder(getApplicationContext());
 
                     firebaseAuth = FirebaseAuth.getInstance();
