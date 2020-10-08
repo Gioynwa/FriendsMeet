@@ -32,5 +32,5 @@ Client part:
 
 
   App Screenshots:
+  <img width=“964” alt=“java 8 and prio java 8  array review example” src=“https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot%202020-02-07%20at%2007.44.05.png”>
   
-  https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot%202020-02-07%20at%2007.44.05.png
