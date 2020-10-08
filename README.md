@@ -1,7 +1,6 @@
-# FriendsMeet
-Android app
+# FriendsMeet Android Application
 
-Server part: 
+### Server part: 
 
   Google Firebase Framework
   Firebase real time database
@@ -10,7 +9,7 @@ Server part:
   Google Api Console
   Google Maps Android Api
 
-Client part:
+### Client part:
 
   Registration page
 
@@ -29,6 +28,10 @@ Client part:
 	(Registered Users List)
 
   Log out
+### App Screenshots
+<img src="https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot_20200207-072616_FriendsMeet.jpg" width="400px" height="auto"><img src="https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot_20200207-072629_FriendsMeet.jpg" width="400px" height="auto"><img src="https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot_20200207-072654_FriendsMeet.jpg" width="400px" height="auto"><img src="https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot_20200207-072710_FriendsMeet.jpg" width="400px" height="auto"><img src="https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot_20200207-072729_FriendsMeet.jpg" width="400px" height="auto"><img src="https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot_20200207-072741_FriendsMeet.jpg" width="400px" height="auto"><img src="https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot_20200207-072754_FriendsMeet.jpg">
 
-<img src="https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot%202020-02-07%20at%2007.44.05.png" width="800px" height="auto">
+### Database Screenshots
+<img src="https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot%202020-02-07%20at%2007.44.05.png" width="400px" height="auto"><img src="https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot%202020-02-07%20at%2007.44.26.png" width="400px" height="auto"><img src="https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot%202020-02-07%20at%2007.44.48.png" width="400px" height="auto">
+
   
