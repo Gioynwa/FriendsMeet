@@ -33,4 +33,4 @@ Client part:
 
   App Screenshots:
   
-  
+  https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot%202020-02-07%20at%2007.44.05.png
