@@ -30,5 +30,5 @@ Client part:
 
   Log out
 
-
+<img src="https://github.com/Gioynwa/FriendsMeet/blob/master/Screenshot%202020-02-07%20at%2007.44.05.png" width="800px" height="auto">
   
